@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2 {
+  margin: 1rem;
+
+  text-align: center;
+}
+ul {
+  text-decoration: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1px;
+  row-gap: 1px;
+}
+li {
+  list-style: none;
+  text-align: center;
+  color: white;
+  padding: 0.7rem;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.roomString {
+  padding: 1rem;
+}
+.dateString {
+  display: inline-block;
+  width: 100px;
+  background: white;
+  border-radius: 5px;
+  color: purple;
+  font-size: small;
+}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 5rem auto;
+}
+.get {
+  width: 100%;
+  margin: 0 auto;
+}
+.postForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+#submitBtn {
+  width: 100px;
+  margin: 1rem;
+  padding: 0.5rem;
+  border: none;
+  background: orange;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#getInput {
+  width: 70%;
+  padding: 0.5rem;
+}
+.deleteBtn {
+  background: red;
+  color: white;
+  align-self: flex-end;
+  padding: 0.2rem;
+  cursor: pointer;
+}

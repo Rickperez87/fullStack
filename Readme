@@ -1,0 +1,13 @@
+Fullstack app. Mongo, Express, Node, Vanilla JS
+
+Cleaning Frequency App: When cleaning the house I forget when was the last time I cleaned. 
+
+Create a room that persists in MongoDB. On click it updates the date which signifies that you cleaned that room
+ and you can retreive a log that shows what dates you cleaned a room and the average of how often you have been 
+cleaning that particular room.
+
+To Do
+
+-Create Put Route to update your date of cleaning.
+-Make logging of dates functionality in MongoDB
+-Delete Route and UI
