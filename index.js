@@ -8,13 +8,7 @@ window.onload = async function () {
   list.innerHTML = await getData();
 };
 
-setPost.addEventListener("keyup", (e) => {
-  if (e.keyCode === 13) {
-    e.preventDefault();
-    submitBtn.click();
-  }
-});
-
+//Submit Events
 submitBtn.addEventListener("click", async (e) => {
   let input = setPost.value;
   await postData(input);
@@ -22,8 +16,30 @@ submitBtn.addEventListener("click", async (e) => {
   setPost.value = "";
 });
 
+setPost.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    submitBtn.click();
+  }
+});
+
+//delete event
+list.addEventListener("click", async (e) => {
+  if (e.target.className === "deleteBtn") {
+    const id = e.target.parentElement.id;
+    try {
+      await deleteData(id);
+    } catch (err) {
+      console.error("error", err);
+    }
+    list.innerHTML = await getData();
+  }
+});
+
+//fetch CRUD Functions
+
 const getData = function () {
-  return fetch("http://localhost:3002")
+  return fetch("http://localhost:3002/")
     .then((res) => res.json())
     .then((data) =>
       data
@@ -38,6 +54,7 @@ const getData = function () {
         .join("")
     );
 };
+
 const postData = function (input) {
   return fetch("http://localhost:3002/", {
     method: "POST",
@@ -53,6 +70,23 @@ const postData = function (input) {
     })
     .catch((error) => console.error("error:", error));
 };
+
+const putData = function (input) {
+  return fetch("http://localhost:3002/", {
+    method: "PUT",
+    mode: "cors",
+    body: JSON.stringify({ room: input }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log("successful update:", data);
+    })
+    .catch((error) => console.error("error:", error));
+};
+
 const deleteData = function (id) {
   return fetch(`http://localhost:3002/${id}`, {
     method: "delete",
@@ -67,14 +101,3 @@ const deleteData = function (id) {
     })
     .catch((error) => console.error("error:", error));
 };
-list.addEventListener("click", async (e) => {
-  if (e.target.className === "deleteBtn") {
-    const id = e.target.parentElement.id;
-    try {
-      await deleteData(id);
-    } catch (err) {
-      console.error("error", err);
-    }
-    list.innerHTML = await getData();
-  }
-});

@@ -48,8 +48,12 @@ router.put("/:id", async (req, res) => {
     const room = await Obj.findById(req.params.id);
     if (!room) {
       res.status(404).send("The course with the given ID was not found");
+      return;
     }
-    room.replaceOne();
+    console.log(room);
+    room.room = req.body.room;
+    room.save();
+    res.send(room);
   } catch (err) {
     console.error("error", err);
   }
