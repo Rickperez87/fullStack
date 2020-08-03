@@ -11,13 +11,11 @@ window.onload = async function () {
 //Submit Events
 submitBtn.addEventListener("click", async (e) => {
   let input = setPost.value;
-  const data = document.getElementsByClassName("roomString");
-  console.log(data);
-  if (data[0]) {
-    const toBeUpdated = Array.from(data).filter(
-      (e) => e.innerHTML.trim() === input
-    );
-    const id = toBeUpdated[0].parentElement.id;
+  let data = Array.from(document.getElementsByClassName("roomString"));
+  console.log(data.some((e) => e.innerHTML.trim() == input));
+  if (data.some((e) => e.innerHTML.trim() === input)) {
+    let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);
+    let id = toBeUpdated[0].parentElement.id;
     console.log(id);
 
     if (id) {
