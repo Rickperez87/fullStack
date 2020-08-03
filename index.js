@@ -11,6 +11,22 @@ window.onload = async function () {
 //Submit Events
 submitBtn.addEventListener("click", async (e) => {
   let input = setPost.value;
+  const data = document.getElementsByClassName("roomString");
+  console.log(data);
+  if (data[0]) {
+    const toBeUpdated = Array.from(data).filter(
+      (e) => e.innerHTML.trim() === input
+    );
+    const id = toBeUpdated[0].parentElement.id;
+    console.log(id);
+
+    if (id) {
+      await putData(id, input);
+      list.innerHTML = await getData();
+      setPost.value = "";
+      return;
+    }
+  }
   await postData(input);
   list.innerHTML = await getData();
   setPost.value = "";
@@ -44,7 +60,9 @@ const getData = function () {
     .then((data) =>
       data
         .map((e) => {
-          let parseDate = new Date(e.date);
+          let parseDate = new Date(
+            e.lastCleanedDate[e.lastCleanedDate.length - 1]
+          );
           return `<li id='${
             e._id
           }'><div class='deleteBtn'>X</div><span class='roomString'>${
@@ -59,7 +77,7 @@ const postData = function (input) {
   return fetch("http://localhost:3002/", {
     method: "POST",
     mode: "cors",
-    body: JSON.stringify({ room: input }),
+    body: JSON.stringify({ room: input, date: Date.now() }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -71,11 +89,11 @@ const postData = function (input) {
     .catch((error) => console.error("error:", error));
 };
 
-const putData = function (input) {
-  return fetch("http://localhost:3002/", {
+const putData = function (id, input) {
+  return fetch(`http://localhost:3002/${id}`, {
     method: "PUT",
     mode: "cors",
-    body: JSON.stringify({ room: input }),
+    body: JSON.stringify({ room: input, date: Date.now() }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },

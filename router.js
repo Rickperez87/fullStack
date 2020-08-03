@@ -14,19 +14,13 @@ mongoose
 //schema
 const objSchema = mongoose.Schema({
   room: String,
-  date: {
-    type: Date,
-    default: () => {
-      let date = new Date();
-      return date.toLocaleString();
-    },
-  },
+  lastCleanedDate: [Date],
 });
 //model
 const Obj = mongoose.model("obj", objSchema);
 
 router.get("/", async (req, res) => {
-  const result = await Obj.find().select({ room: 1, date: 1 });
+  const result = await Obj.find().select({ room: 1, lastCleanedDate: 1 });
   res.json(result);
 });
 
@@ -37,6 +31,7 @@ router.post("/", async (req, res) => {
   }
   const obj = new Obj({
     room: req.body.room,
+    lastCleanedDate: req.body.date,
   });
 
   obj.save();
@@ -51,7 +46,7 @@ router.put("/:id", async (req, res) => {
       return;
     }
     console.log(room);
-    room.room = req.body.room;
+    room.lastCleanedDate.push(req.body.date);
     room.save();
     res.send(room);
   } catch (err) {
