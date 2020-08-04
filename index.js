@@ -1,4 +1,4 @@
-const setPost = document.getElementById("getInput"),
+const setPost = document.getElementById("getInputField"),
   submitBtn = document.getElementById("submitBtn"),
   list = document.getElementById("getList");
 liTags = document.getElementsByTagName("li");
@@ -12,12 +12,9 @@ window.onload = async function () {
 submitBtn.addEventListener("click", async (e) => {
   let input = setPost.value;
   let data = Array.from(document.getElementsByClassName("roomString"));
-  console.log(data.some((e) => e.innerHTML.trim() == input));
   if (data.some((e) => e.innerHTML.trim() === input)) {
     let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);
     let id = toBeUpdated[0].parentElement.id;
-    console.log(id);
-
     if (id) {
       await putData(id, input);
       list.innerHTML = await getData();
@@ -34,6 +31,29 @@ setPost.addEventListener("keyup", (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
     submitBtn.click();
+  }
+});
+// update last cleaned Date on clcking the Room card Event
+list.addEventListener("click", async (e) => {
+  let id = "",
+    data;
+  if (!(e.target.className === "liTag" || "roomString" || "dateString")) {
+    console.log("returned no className valid");
+    return;
+  } else if ((e.target.className = "liTag")) {
+    id = e.target.id;
+    console.log("liTag", id);
+  } else {
+    id = e.target.parentElement.id;
+    console.log("spanTag", id);
+  }
+  try {
+    console.log(id);
+    await putData(id);
+    list.innerHTML = await getData();
+    console.log("id", id, "data", data);
+  } catch (err) {
+    console.log("error", err);
   }
 });
 
@@ -58,14 +78,10 @@ const getData = function () {
     .then((data) =>
       data
         .map((e) => {
-          let parseDate = new Date(
+          let formattedDate = formatDateString(
             e.lastCleanedDate[e.lastCleanedDate.length - 1]
           );
-          return `<li id='${
-            e._id
-          }'><div class='deleteBtn'>X</div><span class='roomString'>${
-            e.room
-          }  </span> <span class='dateString'>${parseDate.toDateString()}</span></li>`;
+          return `<li class='liTag' id='${e._id}'><div class='deleteBtn'>X</div><span class='roomString'>${e.room}  </span> <span class='dateString'>${formattedDate}</span></li>`;
         })
         .join("")
     );
@@ -87,11 +103,11 @@ const postData = function (input) {
     .catch((error) => console.error("error:", error));
 };
 
-const putData = function (id, input) {
+const putData = function (id) {
   return fetch(`http://localhost:3002/${id}`, {
     method: "PUT",
     mode: "cors",
-    body: JSON.stringify({ room: input, date: Date.now() }),
+    body: JSON.stringify({ date: Date.now() }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -116,4 +132,20 @@ const deleteData = function (id) {
       console.log("success:", data);
     })
     .catch((error) => console.error("error:", error));
+};
+
+const formatDateString = (unformatedDate) => {
+  let formatedDate, DayMonthDateYear, AMPM, getHours, hour, d;
+  d = new Date(unformatedDate);
+  getHours = d.getHours();
+  AMPM = getHours > 12 ? "PM" : "AM";
+  hour = getHours > 12 ? getHours - 12 : getHours;
+
+  return (formatedDate = `${d.toDateString()} ${addZeroPadForTime(
+    hour
+  )}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);
+};
+
+const addZeroPadForTime = (num) => {
+  return num < 10 ? `0${num}` : `${num}`;
 };

@@ -5,9 +5,11 @@ Cleaning Frequency App: When cleaning the house I forget when was the last time 
 Create a room that persists in MongoDB. On click it updates the date which signifies that you cleaned that room
  and you can retreive a log that shows what dates you cleaned a room and the average of how often you have been 
 cleaning that particular room.
--Delete Route and UI
+-8/2/20 Delete Route and UI
+-8/3/20 Create Put Route to update your date of cleaning. 
+-8/3/20 added my own date helper function to format date to show AM PM and 0 for single numbers hours and mins.
 
 To Do
 
--Create Put Route to update your date of cleaning.
--Make logging of dates functionality in MongoDB
+-Make UI and JS logic to give you the average cleaned per day.
+-UI show the date most promentantly over the room.
