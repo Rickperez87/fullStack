@@ -1,6 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #35a7ff;
+  color: #ffffff;
 }
 h1,
 h2 {
@@ -18,23 +23,34 @@ ul {
 li {
   list-style: none;
   text-align: center;
-  color: white;
+  color: #ffffff;
   padding: 0.7rem;
-  background: #333;
+  background: #38618c;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  align-items: center;
+}
+li:hover {
+  background: #ffe74c;
+  color: #38618c;
+}
+li:hover > svg {
+  fill: #38618c;
 }
 .roomString {
   padding: 1rem;
 }
+.dateContainer {
+  width: 100%;
+  display: flex;
+  padding: 1.5rem;
+}
 .dateString {
   display: inline-block;
-  width: 100px;
-  background: white;
+  width: 180px;
   border-radius: 5px;
-  color: purple;
-  font-size: small;
+  font-size: large;
+  font-weight: bold;
 }
 .container {
   max-width: 1200px;
@@ -57,8 +73,8 @@ li {
   margin: 1rem;
   padding: 0.5rem;
   border: none;
-  background: orange;
-  color: white;
+  background: #ffe74c;
+  color: #38618c;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
@@ -68,9 +84,17 @@ li {
   padding: 0.5rem;
 }
 .deleteBtn {
-  background: red;
-  color: white;
+  align-self: flex-end;
+  background: #ff5964;
+  color: 38618c;
   align-self: flex-end;
   padding: 0.2rem;
   cursor: pointer;
+}
+svg {
+  align-self: flex-start;
+  top: 0;
+  left: 0;
+  height: 30px;
+  fill: #fff;
 }
