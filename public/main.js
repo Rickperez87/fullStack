@@ -71,7 +71,7 @@ list.addEventListener("click", async (e) => {
 
 //fetch CRUD Functions
 const getData = function () {
-  return fetch("http://localhost:3002/")
+  return fetch("http://localhost:3002/api/data")
     .then((res) => res.json())
     .then((data) =>
       data
@@ -86,7 +86,7 @@ const getData = function () {
 };
 
 const postData = function (input) {
-  return fetch("http://localhost:3002/", {
+  return fetch("http://localhost:3002/api/data", {
     method: "POST",
     mode: "cors",
     body: JSON.stringify({ room: input, date: Date.now() }),
@@ -102,7 +102,7 @@ const postData = function (input) {
 };
 
 const putData = function (id) {
-  return fetch(`http://localhost:3002/${id}`, {
+  return fetch(`http://localhost:3002/api/data/${id}`, {
     method: "PUT",
     mode: "cors",
     body: JSON.stringify({ date: Date.now() }),
@@ -118,7 +118,7 @@ const putData = function (id) {
 };
 
 const deleteData = function (id) {
-  return fetch(`http://localhost:3002/${id}`, {
+  return fetch(`http://localhost:3002/api/data${id}`, {
     method: "delete",
     mode: "cors",
     headers: {

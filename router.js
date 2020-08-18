@@ -1,8 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-
+const { Obj } = require("./models/obj");
 const mongoose = require("mongoose");
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -10,14 +11,6 @@ mongoose
   })
   .then(() => console.log("connected to mongodb..."))
   .catch((err) => console.error("could not connect ot MongoDB", err));
-
-//schema
-const objSchema = mongoose.Schema({
-  room: String,
-  lastCleanedDate: [Date],
-});
-//model
-const Obj = mongoose.model("obj", objSchema);
 
 router.get("/", async (req, res) => {
   const result = await Obj.find().select({ room: 1, lastCleanedDate: 1 });
@@ -34,7 +27,7 @@ router.post("/", async (req, res) => {
     lastCleanedDate: req.body.date,
   });
 
-  obj.save();
+  await obj.save();
   res.send(obj);
 });
 
@@ -47,7 +40,7 @@ router.put("/:id", async (req, res) => {
     }
     console.log(room);
     room.lastCleanedDate.push(req.body.date);
-    room.save();
+    await room.save();
     res.send(room);
   } catch (err) {
     console.error("error", err);
@@ -60,7 +53,7 @@ router.delete("/:id", async (req, res) => {
     if (!room) {
       return;
     }
-    room.remove();
+    await room.deleteOne();
     res.send(room);
   } catch (err) {
     console.error("error", err);

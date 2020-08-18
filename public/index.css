@@ -8,67 +8,39 @@ body {
   color: #ffffff;
 }
 h1,
-h2 {
+h2,
+h3 {
   margin: 1rem;
 
   text-align: center;
 }
-ul {
+a {
   text-decoration: none;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 1px;
-  row-gap: 1px;
-}
-li {
-  list-style: none;
-  text-align: center;
-  color: #ffffff;
-  padding: 0.7rem;
-  background: #38618c;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-li:hover {
-  background: #ffe74c;
-  color: #38618c;
-}
-li:hover > svg {
-  fill: #38618c;
-}
-.roomString {
-  padding: 1rem;
-}
-.dateContainer {
-  width: 100%;
-  display: flex;
-  padding: 1.5rem;
-}
-.dateString {
-  display: inline-block;
-  width: 180px;
-  border-radius: 5px;
-  font-size: large;
-  font-weight: bold;
 }
 .container {
   max-width: 1200px;
   width: 100%;
   margin: 5rem auto;
+  text-align: center;
 }
-.get {
-  width: 100%;
-  margin: 0 auto;
+.container.guest {
+  margin-top: 20rem;
 }
-.postForm {
+
+form {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
   align-items: center;
 }
-#submitBtn {
+form > input {
+  width: 40%;
+  padding: 0.5rem;
+  margin: 0.2em;
+}
+button,
+input[type="submit"] {
   width: 100px;
   margin: 1rem;
   padding: 0.5rem;
@@ -78,23 +50,4 @@ li:hover > svg {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-}
-#getInputField {
-  width: 70%;
-  padding: 0.5rem;
-}
-.deleteBtn {
-  align-self: flex-end;
-  background: #ff5964;
-  color: 38618c;
-  align-self: flex-end;
-  padding: 0.2rem;
-  cursor: pointer;
-}
-svg {
-  align-self: flex-start;
-  top: 0;
-  left: 0;
-  height: 30px;
-  fill: #fff;
 }
