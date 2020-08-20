@@ -6,15 +6,15 @@ const setPost = document.getElementById("getInputField"),
 //on load start
 window.onload = async function () {
   list.innerHTML = await getData();
-  function doToEach() {
-    console.log(dateContainer);
-    for (i = 0; i < dateContainer.length; i++)
-      dateContainer[i].insertBefore(
-        createSVGClock(),
-        dateContainer[i].firstChild
-      );
-  }
-  doToEach();
+  // function doToEach() {
+  //   console.log(dateContainer);
+  //   for (i = 0; i < dateContainer.length; i++)
+  //     dateContainer[i].insertBefore(
+  //       createSVGClock(),
+  //       dateContainer[i].firstChild
+  //     );
+  // }
+  // doToEach();
 };
 
 //Submit Events
@@ -50,23 +50,31 @@ list.addEventListener("click", async (e) => {
     id = e.target.parentElement.id;
     try {
       await deleteData(id);
-    } catch (err) {
-      console.error("error", err);
+    } catch (e) {
+      return e;
     }
     list.innerHTML = await getData();
     return;
-  } else if ((e.target.className = "liTag")) {
-    id = e.target.id;
-  } else {
+  } else if (
+    e.target.className === "dateContainer" ||
+    e.target.className === "roomString"
+  ) {
     id = e.target.parentElement.id;
+    console.log("else if ||", `id:${id}`, `e.target${e.target}`);
+  } else if (e.target.className === "liTag") {
+    id = e.target.id;
+    console.log("else if", `id:${id}`, `e.target${e.target}`);
+  } else {
+    id = e.target.parentElement.parentElement.id;
+    console.log("else", id, e.target);
   }
   try {
     await putData(id);
     list.innerHTML = await getData();
-  } catch (err) {
-    console.log("error", err);
+    return;
+  } catch (e) {
+    return e;
   }
-  return;
 });
 
 //fetch CRUD Functions
@@ -114,11 +122,11 @@ const putData = function (id) {
     .then((data) => {
       console.log("successful update:", data);
     })
-    .catch((error) => console.error("error:", error));
+    .catch((e) => e);
 };
 
 const deleteData = function (id) {
-  return fetch(`http://localhost:3002/api/data${id}`, {
+  return fetch(`http://localhost:3002/api/data/${id}`, {
     method: "delete",
     mode: "cors",
     headers: {

@@ -9,19 +9,11 @@ cleaning that particular room.
 -8/3/20 Create Put Route to update your date of cleaning. 
 -8/3/20 added my own date helper function to format date to show AM PM and 0 for single numbers hours and mins.
 -8/17/20 setup express to serve public files.
--8/17/20 refactoring file structure to seperate routes, tests, public, models
--8/18/20 serving login at index.html and serving main.html, added bcrypt to hash password, create user.
 
 Doing
--8/17/20 create user model
--create user authentication
--set post and delete routes to only user authentication
--user auth middleware
 
 To Do
 
-
--set up authorization middleware so that you need to be registered to add room
 -Make UI and JS logic to give you the average cleaned per day.
-
--UI show the date most promentantly over the room.
+-Make it to highlight which rooms to clean today.
+-deploy to heroku
