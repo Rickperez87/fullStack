@@ -11,8 +11,12 @@ const setPost = document.getElementById("getInputField"),
 let data, rooms, dateCleanedArray;
 let dataArray = [];
 
-const apiUrl = "https://nameless-citadel-22168.herokuapp.com/";
-const apiURLDev = "http://localhost:3002/";
+const api = [
+  "https://nameless-citadel-22168.herokuapp.com/",
+  "http://localhost:3002/",
+];
+
+const apiUrl = api[0];
 
 window.onload = async function () {
   data = await getData();
