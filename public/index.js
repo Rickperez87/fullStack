@@ -100,13 +100,13 @@ selector.addEventListener("change", (e) => {
 
 //fetch CRUD Functions
 const getData = function () {
-  return fetch(apiURLDev + "api/data")
+  return fetch(apiUrl + "api/data")
     .then((res) => res.json())
     .then((data) => data);
 };
 
 const postData = function (input) {
-  return fetch(apiURLDev + "api/data", {
+  return fetch(apiUrl + "api/data", {
     method: "POST",
     mode: "cors",
     body: JSON.stringify({ room: input, date: Date.now() }),
@@ -122,7 +122,7 @@ const postData = function (input) {
 };
 
 const putData = function (id) {
-  return fetch(apiURLDev + `api/data/${id}`, {
+  return fetch(apiUrl + `api/data/${id}`, {
     method: "PUT",
     mode: "cors",
     body: JSON.stringify({ date: Date.now() }),
@@ -138,7 +138,7 @@ const putData = function (id) {
 };
 
 const deleteData = function (id) {
-  return fetch(apiURLDev + `api/data/${id}`, {
+  return fetch(apiUrl + `api/data/${id}`, {
     method: "delete",
     mode: "cors",
     headers: {
