@@ -16,12 +16,10 @@ const api = [
   "http://localhost:3002/",
 ];
 
-const apiUrl = api[0];
+const apiUrl = api[1];
 
 window.onload = async function () {
-  data = await getData();
-  list.innerHTML = renderData(data);
-  select.innerHTML = setRoomOptions(data);
+  await handleChange();
 };
 
 //Event Listners
@@ -33,14 +31,14 @@ submitBtn.addEventListener("click", async (e) => {
     let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);
     let id = toBeUpdated[0].parentElement.id;
     if (id) {
-      await putData(id, input);
-      list.innerHTML = await getData();
+      await putData(id);
+      await handleChange();
       setPost.value = "";
       return;
     }
   }
   await postData(input);
-  list.innerHTML = await getData();
+  await handleChange();
   setPost.value = "";
 });
 
@@ -61,12 +59,10 @@ list.addEventListener("click", async (e) => {
       // list.innerHTML = renderData(data);
       // select.innerHTML = setRoomOptions(data);
       // ulLogs.innerHTML = setLogs(data, select.target.value);
-      await handleChange();
-      return;
     } catch (e) {
       return e;
     }
-    list.innerHTML = await getData();
+    await handleChange();
     return;
   } else if (
     e.target.className === "dateContainer" ||
@@ -83,14 +79,11 @@ list.addEventListener("click", async (e) => {
   }
   try {
     await putData(id);
-    data = await getData();
-    list.innerHTML = renderData(data);
-    select.innerHTML = setRoomOptions(data);
-    ulLogs.innerHTML = setLogs(data, select.target.value);
-    return;
   } catch (e) {
     return e;
   }
+  await handleChange();
+  return;
 });
 
 selector.addEventListener("change", (e) => {
@@ -211,7 +204,5 @@ const handleChange = async () => {
   data = await getData();
   list.innerHTML = renderData(data);
   select.innerHTML = setRoomOptions(data);
-  ulLogs.innerHTML = setLogs(data, select.target.value);
-  average.innerHTML = `Weekly Average: ${setAverage(data, e.target.value)}`;
   return;
 };
