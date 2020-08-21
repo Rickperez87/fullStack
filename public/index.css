@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +7,8 @@
 body {
   background: #35a7ff;
   color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  /* font-family: 'Russo One', sans-serif; */
 }
 h1,
 h2 {
@@ -27,7 +30,7 @@ li {
   padding: 0.7rem;
   background: #38618c;
   display: flex;
-  flex-wrap: wrap;
+
   flex-direction: column;
 }
 li:hover {
@@ -47,7 +50,7 @@ li:hover > svg {
 }
 .dateString {
   display: inline-block;
-  width: 180px;
+  width: 200px;
   border-radius: 5px;
   font-size: large;
   font-weight: bold;
@@ -80,7 +83,7 @@ li:hover > svg {
   cursor: pointer;
 }
 #getInputField {
-  width: 70%;
+  width: 50%;
   padding: 0.5rem;
 }
 .deleteBtn {
@@ -90,11 +93,4 @@ li:hover > svg {
   align-self: flex-end;
   padding: 0.2rem;
   cursor: pointer;
-}
-svg {
-  align-self: flex-start;
-  top: 0;
-  left: 0;
-  height: 30px;
-  fill: #fff;
 }

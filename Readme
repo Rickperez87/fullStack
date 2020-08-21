@@ -11,9 +11,11 @@ cleaning that particular room.
 -8/17/20 setup express to serve public files.
 
 Doing
+-Make UI and JS logic to give you the average cleaned per day.
 
 To Do
 
--Make UI and JS logic to give you the average cleaned per day.
 -Make it to highlight which rooms to clean today.
 -deploy to heroku
+-make UI responsive
+
