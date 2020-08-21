@@ -11,6 +11,9 @@
     "server": "nodemon app.js",
     "test": "NODE_ENV=test jest --watchAll --verbose --runInBand"
   },
+  "engines": {
+    "node": "12.17.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
