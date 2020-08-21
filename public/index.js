@@ -16,7 +16,7 @@ const api = [
   "http://localhost:3002/",
 ];
 
-const apiUrl = api[1];
+const apiUrl = api[0];
 
 window.onload = async function () {
   await handleChange();
