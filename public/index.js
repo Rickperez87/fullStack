@@ -2,12 +2,25 @@ const setPost = document.getElementById("getInputField"),
   submitBtn = document.getElementById("submitBtn"),
   list = document.getElementById("getList"),
   liTags = document.getElementsByClassName("li"),
-  dateContainer = document.getElementsByClassName("dateContainer");
+  ulLogs = document.getElementById("logs"),
+  dateContainer = document.getElementsByClassName("dateContainer"),
+  select = document.querySelector("select"),
+  average = document.getElementById("average"),
+  selector = document.getElementById("rooms");
+
+let data, rooms, dateCleanedArray;
+let dataArray = [];
+
 const apiUrl = "https://nameless-citadel-22168.herokuapp.com/";
+const apiURLDev = "http://localhost:3002/";
 
 window.onload = async function () {
-  list.innerHTML = await getData();
+  data = await getData();
+  list.innerHTML = renderData(data);
+  select.innerHTML = setRoomOptions(data);
 };
+
+//Event Listners
 
 submitBtn.addEventListener("click", async (e) => {
   let input = setPost.value;
@@ -34,13 +47,18 @@ setPost.addEventListener("keyup", (e) => {
   }
 });
 
-//List Click Event - Delete Button Or Update Last Cleaned Date
 list.addEventListener("click", async (e) => {
   let id;
   if (e.target.className === "deleteBtn") {
     id = e.target.parentElement.id;
     try {
       await deleteData(id);
+      // data = await getData();
+      // list.innerHTML = renderData(data);
+      // select.innerHTML = setRoomOptions(data);
+      // ulLogs.innerHTML = setLogs(data, select.target.value);
+      await handleChange();
+      return;
     } catch (e) {
       return e;
     }
@@ -61,31 +79,30 @@ list.addEventListener("click", async (e) => {
   }
   try {
     await putData(id);
-    list.innerHTML = await getData();
+    data = await getData();
+    list.innerHTML = renderData(data);
+    select.innerHTML = setRoomOptions(data);
+    ulLogs.innerHTML = setLogs(data, select.target.value);
     return;
   } catch (e) {
     return e;
   }
 });
 
+selector.addEventListener("change", (e) => {
+  ulLogs.innerHTML = setLogs(data, e.target.value);
+  average.innerHTML = `Weekly Average: ${setAverage(data, e.target.value)}`;
+});
+
 //fetch CRUD Functions
 const getData = function () {
-  return fetch(apiUrl + "api/data")
+  return fetch(apiURLDev + "api/data")
     .then((res) => res.json())
-    .then((data) =>
-      data
-        .map((e) => {
-          let formattedDate = formatDateString(
-            e.lastCleanedDate[e.lastCleanedDate.length - 1]
-          );
-          return `<li class='liTag' id='${e._id}'><div class='deleteBtn'>X</div> <div class='dateContainer'>     <span class='dateString'> ${formattedDate}</span></div><span class='roomString'>${e.room}</span> </li>`;
-        })
-        .join("")
-    );
+    .then((data) => data);
 };
 
 const postData = function (input) {
-  return fetch(apiUrl + "api/data", {
+  return fetch(apiURLDev + "api/data", {
     method: "POST",
     mode: "cors",
     body: JSON.stringify({ room: input, date: Date.now() }),
@@ -101,7 +118,7 @@ const postData = function (input) {
 };
 
 const putData = function (id) {
-  return fetch(apiUrl + "api/data/${id}", {
+  return fetch(apiURLDev + `api/data/${id}`, {
     method: "PUT",
     mode: "cors",
     body: JSON.stringify({ date: Date.now() }),
@@ -117,7 +134,7 @@ const putData = function (id) {
 };
 
 const deleteData = function (id) {
-  return fetch(apiUrl + `api/data/${id}`, {
+  return fetch(apiURLDev + `api/data/${id}`, {
     method: "delete",
     mode: "cors",
     headers: {
@@ -146,4 +163,51 @@ const formatDateString = (unformatedDate) => {
 
 const addZeroPadForTime = (num) => {
   return num < 10 ? `0${num}` : `${num}`;
+};
+
+const setRoomOptions = function (data) {
+  return data
+    .map((e) => `<option value='${e.room}'>${e.room}</option>`)
+    .join("");
+};
+
+function renderData(data) {
+  return data
+    .map((e) => {
+      let formattedDate = formatDateString(
+        e.lastCleanedDate[e.lastCleanedDate.length - 1]
+      );
+      return `<li class='liTag' id='${e._id}'><div class='deleteBtn'>X</div> <div class='dateContainer'>     <span class='dateString'> ${formattedDate}</span></div><span class='roomString'>${e.room}</span> </li>`;
+    })
+    .join("");
+}
+
+function setLogs(data, room) {
+  return getLastCleanedArray(data, room)
+    .map((e) => `<li class='liCleaned' >${formatDateString(e)}</li>`)
+    .join("");
+}
+
+const getLastCleanedArray = (data, room) => {
+  const filtered = data.filter((e) => e.room === room);
+  return filtered[0].lastCleanedDate.map((e) => formatDateString(e));
+};
+
+const setAverage = (data, room) => {
+  let arr = getLastCleanedArray(data, room);
+  let d = new Date();
+  let firstEntry = arr[arr.length - 1];
+  let weeks = Math.ceil((d.getDate() - new Date(firstEntry).getDate()) / 7);
+  weeks = weeks === 0 ? 1 : weeks;
+  let average = Math.ceil(arr.length / weeks);
+  return average;
+};
+
+const handleChange = async () => {
+  data = await getData();
+  list.innerHTML = renderData(data);
+  select.innerHTML = setRoomOptions(data);
+  ulLogs.innerHTML = setLogs(data, select.target.value);
+  average.innerHTML = `Weekly Average: ${setAverage(data, e.target.value)}`;
+  return;
 };

@@ -94,3 +94,6 @@ li:hover > svg {
   padding: 0.2rem;
   cursor: pointer;
 }
+#average {
+  display: block;
+}
