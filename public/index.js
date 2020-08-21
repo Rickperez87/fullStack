@@ -3,6 +3,7 @@ const setPost = document.getElementById("getInputField"),
   list = document.getElementById("getList"),
   liTags = document.getElementsByClassName("li"),
   dateContainer = document.getElementsByClassName("dateContainer");
+const apiUrl = "https://nameless-citadel-22168.herokuapp.com/";
 
 window.onload = async function () {
   list.innerHTML = await getData();
@@ -69,7 +70,7 @@ list.addEventListener("click", async (e) => {
 
 //fetch CRUD Functions
 const getData = function () {
-  return fetch("http://localhost:3002/api/data")
+  return fetch(apiUrl + "api/data")
     .then((res) => res.json())
     .then((data) =>
       data
@@ -84,7 +85,7 @@ const getData = function () {
 };
 
 const postData = function (input) {
-  return fetch("http://localhost:3002/api/data", {
+  return fetch(apiUrl + "api/data", {
     method: "POST",
     mode: "cors",
     body: JSON.stringify({ room: input, date: Date.now() }),
@@ -100,7 +101,7 @@ const postData = function (input) {
 };
 
 const putData = function (id) {
-  return fetch(`http://localhost:3002/api/data/${id}`, {
+  return fetch(apiUrl + "api/data/${id}", {
     method: "PUT",
     mode: "cors",
     body: JSON.stringify({ date: Date.now() }),
@@ -116,7 +117,7 @@ const putData = function (id) {
 };
 
 const deleteData = function (id) {
-  return fetch(`http://localhost:3002/api/data/${id}`, {
+  return fetch(apiUrl + `api/data/${id}`, {
     method: "delete",
     mode: "cors",
     headers: {
