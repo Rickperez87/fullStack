@@ -8,34 +8,34 @@
   </head>
   <body>
     <section>
-      <header><div class="title">        <h1>CLEANING TIME </h1>
-      </div><ul><li>Rooms</li></ul></header>
+      <div class="container">
+      <header><div class="title">        <h1>CHRONICLE PURGO</h1>
+      </div><a id="header-sub" href='#'>Rooms</a></header>
+    </div>
     </section>
     <div class="container">
-      <div class="get">
-        
-        <form action="input" method="get" type="text"></form>
-      </div>
+ 
       <ul id="getList"></ul>
     </div>
-    <div class="container">
+    <div class="container createRoom">
       <div class="get">
-        <h1>Create Room</h1>
         <div class="postForm">
           <form action="input" method="post" type="text"></form>
-          <input id="getInputField" placeholder="Name" type="text" />
+          <input id="getInputField" placeholder="Create a Room" type="text" />
           <input id="submitBtn" type="submit" />
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container log-container">
       <div class="log">
-        <label for="Rooms">Select a Room</label>
-        <select name="rooms" id='rooms'></select>
-        <span id='average'>x</span>
-        <ul id='logs'></ul>
-          
+        <select name="rooms" id='rooms'></select> 
+        <span id='average'></span>
         </div>
+      </div>
+      <div class="container">
+
+        <ul id='logs'></ul>
+
       </div>
     </div>
 

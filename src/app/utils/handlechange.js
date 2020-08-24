@@ -9,7 +9,9 @@ let data;
 const handleChange = async () => {
   data = await getData();
   list.innerHTML = renderData(data);
-  select.innerHTML = setRoomOptions(data);
+  select.innerHTML = `<option value="">Select a Room</option>${setRoomOptions(
+    data
+  )}</optgroup>`;
   return;
 };
 
