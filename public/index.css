@@ -7,7 +7,6 @@
 body {
   background: #012b57;
   font-family: "Poppins", sans-serif;
-  /* font-family: 'Russo One', sans-serif; */
 }
 h1,
 h2 {
@@ -53,6 +52,7 @@ a:hover {
 
 .roomString {
   padding: 1rem;
+  text-align: center;
 }
 .dateContainer {
   width: 100%;
@@ -63,8 +63,9 @@ a:hover {
   display: inline-block;
   width: 200px;
   border-radius: 5px;
-  font-size: large;
+  font-size: medium;
   font-weight: bold;
+  text-align: center;
 }
 .container {
   max-width: 1200px;
@@ -145,4 +146,22 @@ header {
 .createRoom,
 .log-container {
   max-width: 600px;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 1200px) {
+  ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 850px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 550px) {
+  ul {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

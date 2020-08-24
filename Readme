@@ -9,6 +9,10 @@ cleaning that particular room.
 -8/3/20 Create Put Route to update your date of cleaning. 
 -8/3/20 added my own date helper function to format date to show AM PM and 0 for single numbers hours and mins.
 -8/17/20 setup express to serve public files.
+8/18/20 Deploy to Heroku
+- 8/20/20 component that pulls down all rooms and if you select it returns list of dates.-Make UI and JS logic to give you the average cleaned per day.
+
+8/24/20 Refactored some of the JS code with webpack, improved UI and depolyed to Heroku
 
 Doing
 
@@ -16,7 +20,6 @@ Doing
 To Do
 
 -Make it to highlight which rooms to clean today.
--deploy to heroku
 -make UI responsive
--component that pulls down all rooms and if you select it returns list of dates.-Make UI and JS logic to give you the average cleaned per day.
+-make li cursor clickable
 
