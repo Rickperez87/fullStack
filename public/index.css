@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/* globals */
 body {
   background: #012b57;
   font-family: "Poppins", sans-serif;
@@ -20,9 +23,7 @@ a {
   font-weight: bold;
   font-size: larger;
 }
-#header-sub {
-  padding: 1.5rem;
-}
+
 ul {
   height: 100%;
   text-decoration: none;
@@ -31,6 +32,7 @@ ul {
   column-gap: 1rem;
   row-gap: 1rem;
 }
+
 li {
   height: 100%;
   list-style: none;
@@ -41,15 +43,33 @@ li {
   opacity: 0.9;
   display: flex;
   border-radius: 5px;
-
   flex-direction: column;
 }
+
 li:hover,
 a:hover {
   color: #fff;
   opacity: 1;
 }
 
+/* header styles */
+#svg {
+  display: inline;
+  fill: #fff;
+}
+header {
+  display: flex;
+  background: #35a7ff;
+  opacity: 0.9;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+#header-sub {
+  padding: 1.5rem;
+}
+
+/* /room styles */
 .roomString {
   padding: 1rem;
   text-align: center;
@@ -72,52 +92,6 @@ a:hover {
   width: 100%;
   margin: 1rem auto;
 }
-.get,
-.log {
-  width: 100%;
-  background: #35a7ff;
-  opacity: 0.9;
-  margin: 0 auto;
-  padding: 0.7rem 0;
-  border-radius: 5px;
-}
-.log {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-#rooms {
-  margin: 1rem 0;
-  padding: 0.5rem;
-}
-label {
-  padding-top: 1rem;
-}
-.postForm {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 auto;
-  align-items: center;
-}
-#submitBtn {
-  width: 100px;
-  margin: 1rem;
-  padding: 0.5rem;
-  border: none;
-  background: #ffe74c;
-  color: #38618c;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-}
-#getInputField {
-  width: 50%;
-  padding: 0.5rem;
-  margin: 1rem 0;
-}
 .deleteBtn {
   align-self: flex-end;
   background: #ff5964;
@@ -132,29 +106,71 @@ label {
   color: #fff;
   opacity: 1;
 }
+
+/* create a room */
+.get,
+.log {
+  width: 100%;
+  background: #35a7ff;
+  opacity: 0.9;
+  margin: 0 auto;
+  padding: 0.7rem 0;
+  border-radius: 5px;
+}
+.postForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+}
+#getInputField {
+  width: 50%;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+#submitBtn {
+  width: 100px;
+  margin: 1rem;
+  padding: 0.5rem;
+  border: none;
+  background: #ffe74c;
+  color: #38618c;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* selector */
+.log {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+#rooms {
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+label {
+  padding-top: 1rem;
+}
+
 #average {
   display: block;
 }
-header {
-  display: flex;
-  background: #35a7ff;
-  opacity: 0.9;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-}
+
 .createRoom,
 .log-container {
   max-width: 600px;
 }
-/* Extra small devices (phones, 600px and down) */
+
+/* media queries */
 @media only screen and (max-width: 1200px) {
   ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 850px) {
   ul {
     grid-template-columns: repeat(2, 1fr);
