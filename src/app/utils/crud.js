@@ -1,9 +1,9 @@
 const api = [
-  "https://nameless-citadel-22168.herokuapp.com/",
+  // "https://nameless-citadel-22168.herokuapp.com/",
   "http://localhost:3002/",
 ];
 
-const apiUrl = api[1];
+const apiUrl = api[0];
 
 //fetch CRUD Functions
 
