@@ -1,7 +1,4 @@
-const api = [
-  // "https://nameless-citadel-22168.herokuapp.com/",
-  "http://localhost:3002/",
-];
+const api = ["https://purgo.rickperez.dev/", "http://localhost:3002/"];
 
 const apiUrl = api[0];
 
