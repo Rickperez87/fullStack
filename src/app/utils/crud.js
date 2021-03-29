@@ -1,6 +1,11 @@
-const api = ["https://purgo.rickperez.dev/", "http://localhost:3002/"];
+let apiUrl;
 
-const apiUrl = api[0];
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV == "development") {
+  apiUrl = "http://localhost:3002/";
+} else {
+  apiUrl = "https://purgo.rickperez.dev/";
+}
 
 //fetch CRUD Functions
 
