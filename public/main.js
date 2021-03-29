@@ -106,7 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"formatDateString\", function() { return formatDateString; });\nconst formatDateString = (unformatedDate) => {\n  let AMPM, getHours, hour, d, formattedDate;\n  d = new Date(unformatedDate);\n  getHours = d.getHours();\n  AMPM = getHours > 12 ? \"PM\" : \"AM\";\n  hour = getHours > 12 ? getHours - 12 : getHours;\n\n  return (formattedDate = `${d.toDateString()} ${addZeroPadForTime(\n    hour\n  )}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);\n};\n\nconst addZeroPadForTime = (num) => {\n  return num < 10 ? `0${num}` : `${num}`;\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/formatDateString.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"formatDateString\", function() { return formatDateString; });\nconst formatDateString = (unformatedDate) => {\n  let AMPM, getHours, hour, d, formattedDate;\n  d = new Date(unformatedDate);\n  getHours = d.getHours();\n  AMPM = getHours > 12 ? \"PM\" : \"AM\";\n  hour = getHours > 12 ? getHours - 12 : getHours;\n\n  return (formattedDate = `${d.toDateString()}`);\n\n  //remove hour and minute to date format\n  // ${addZeroPadForTime(hour)}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);\n};\n\nconst addZeroPadForTime = (num) => {\n  return num < 10 ? `0${num}` : `${num}`;\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/formatDateString.js?");
 
 /***/ }),
 

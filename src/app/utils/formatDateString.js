@@ -5,9 +5,10 @@ const formatDateString = (unformatedDate) => {
   AMPM = getHours > 12 ? "PM" : "AM";
   hour = getHours > 12 ? getHours - 12 : getHours;
 
-  return (formattedDate = `${d.toDateString()} ${addZeroPadForTime(
-    hour
-  )}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);
+  return (formattedDate = `${d.toDateString()}`);
+
+  //remove hour and minute to date format
+  // ${addZeroPadForTime(hour)}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);
 };
 
 const addZeroPadForTime = (num) => {

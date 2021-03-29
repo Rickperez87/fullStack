@@ -44,12 +44,15 @@ li {
   display: flex;
   border-radius: 5px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 li:hover,
 a:hover {
   color: #fff;
   opacity: 1;
+  cursor: pointer;
 }
 
 /* header styles */
@@ -58,15 +61,13 @@ a:hover {
   fill: #fff;
 }
 header {
-  display: flex;
   background: #35a7ff;
   opacity: 0.9;
-  justify-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 5px;
-}
-#header-sub {
-  padding: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* /room styles */
@@ -76,7 +77,6 @@ header {
 }
 .dateContainer {
   width: 100%;
-  display: flex;
   padding: 1.5rem;
 }
 .dateString {
@@ -90,7 +90,7 @@ header {
 .container {
   max-width: 1200px;
   width: 100%;
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 .deleteBtn {
   align-self: flex-end;
@@ -108,14 +108,17 @@ header {
 }
 
 /* create a room */
-.get,
+.createRoom,
 .log {
   width: 100%;
   background: #35a7ff;
   opacity: 0.9;
   margin: 0 auto;
-  padding: 0.7rem 0;
+  padding: 2.4rem 0;
   border-radius: 5px;
+}
+.createRoom {
+  margin: 1rem auto;
 }
 .postForm {
   display: flex;
@@ -127,7 +130,6 @@ header {
 #getInputField {
   width: 50%;
   padding: 0.5rem;
-  margin: 1rem 0;
 }
 #submitBtn {
   width: 100px;
@@ -166,12 +168,16 @@ label {
 }
 
 /* media queries */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1260px) {
   ul {
     grid-template-columns: repeat(3, 1fr);
   }
+  .container {
+    margin: 0 2rem;
+    overflow-x: hidden;
+  }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 870px) {
   ul {
     grid-template-columns: repeat(2, 1fr);
   }
