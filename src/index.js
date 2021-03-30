@@ -67,28 +67,21 @@ list.addEventListener("click", async (e) => {
   ) {
     id = e.target.parentElement.id;
     console.log("else if ||", `id:${id}`, `e.target${e.target}`);
-    try {
-      await putData(id);
-    } catch (e) {
-      return e;
-    }
-    await handleChange();
-    return;
   } else if (e.target.className === "liTag") {
     id = e.target.id;
     console.log("else if", `id:${id}`, `e.target${e.target}`);
-    try {
-      await putData(id);
-    } catch (e) {
-      return e;
-    }
-    await handleChange();
-    return;
   } else {
     id = e.target.parentElement.parentElement.id;
     console.log("else", id, e.target.className);
     console.log("parent class", e.target.parentElement.className);
   }
+  try {
+    await putData(id);
+  } catch (e) {
+    return e;
+  }
+  await handleChange();
+  return;
 });
 
 selector.addEventListener("change", async (e) => {
