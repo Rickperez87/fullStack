@@ -53,6 +53,7 @@ ul {
 }
 
 li {
+  position: relative;
   height: 100%;
   list-style: none;
   text-align: center;
@@ -69,10 +70,11 @@ li {
 }
 
 li:hover,
-a:hover {
-  color: var(--white);
+a:hover,
+.deleteBtn {
   opacity: 1;
   cursor: pointer;
+  color: var(--blue-bg-color);
 }
 
 /* header styles */
@@ -125,22 +127,19 @@ header {
   padding: 3rem;
 }
 .deleteBtn {
-  align-self: flex-end;
+  position: absolute;
+  top: 5%;
+  right: 1%;
   width: 30px;
-  color: #38618c;
-  opacity: 0.9;
-  align-self: flex-end;
-  padding: 0 0.4rem;
   cursor: pointer;
-  border-radius: 4px;
+  z-index: 10;
 }
 .delete__icon {
   width: 100%;
-  height: 3.25rem;
+  height: 2rem;
 }
-.deleteBtn:hover {
-  color: #fff;
-  opacity: 1;
+.delete__icon:hover {
+  fill: var(--blue-bg-color);
 }
 
 /* create a room */
@@ -173,7 +172,7 @@ header {
   padding: 0.8rem 1.6rem;
   font-size: 1.4rem;
   border: none;
-  background: var(--blue-bg-color);
+  background: linear-gradient(to bottom right, var(--blue-bg-color), #3587fa);
   color: var(--light-bg-color);
   font-weight: 300;
   border-radius: 100px;

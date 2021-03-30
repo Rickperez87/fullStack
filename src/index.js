@@ -48,8 +48,12 @@ setPost.addEventListener("keyup", (e) => {
 
 list.addEventListener("click", async (e) => {
   let id;
-  if (e.target.className === "deleteBtn") {
-    id = e.target.parentElement.id;
+  if (
+    e.target.className === "deleteBtn" ||
+    e.target.parentElement.parentElement.className === "deleteBtn" ||
+    e.target.parentElement.className === "deleteBtn"
+  ) {
+    id = e.target.parentElement.parentElement.parentElement.id;
     try {
       await deleteData(id);
     } catch (e) {
@@ -63,20 +67,28 @@ list.addEventListener("click", async (e) => {
   ) {
     id = e.target.parentElement.id;
     console.log("else if ||", `id:${id}`, `e.target${e.target}`);
+    try {
+      await putData(id);
+    } catch (e) {
+      return e;
+    }
+    await handleChange();
+    return;
   } else if (e.target.className === "liTag") {
     id = e.target.id;
     console.log("else if", `id:${id}`, `e.target${e.target}`);
+    try {
+      await putData(id);
+    } catch (e) {
+      return e;
+    }
+    await handleChange();
+    return;
   } else {
     id = e.target.parentElement.parentElement.id;
-    console.log("else", id, e.target);
+    console.log("else", id, e.target.className);
+    console.log("parent class", e.target.parentElement.className);
   }
-  try {
-    await putData(id);
-  } catch (e) {
-    return e;
-  }
-  await handleChange();
-  return;
 });
 
 selector.addEventListener("change", async (e) => {
