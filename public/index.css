@@ -6,20 +6,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* variables */
+:root {
+  --main-bg-color: #35a7ff;
+  --dark-bg-color: #012b57;
+  --text-color-white: #fff;
+}
+
 /* globals */
 body {
-  background: #012b57;
+  background: var(--dark-bg-color);
   font-family: "Poppins", sans-serif;
 }
 h1,
 h2 {
-  color: white;
+  color: var(--text-color-white);
   margin: 1rem;
   text-align: center;
 }
 a {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-color-white);
   font-weight: bold;
   font-size: larger;
 }
@@ -39,7 +47,7 @@ li {
   text-align: center;
   color: black;
   padding: 0.7rem;
-  background: #35a7ff;
+  background: var(--main-bg-color);
   opacity: 0.9;
   display: flex;
   border-radius: 5px;
@@ -50,7 +58,7 @@ li {
 
 li:hover,
 a:hover {
-  color: #fff;
+  color: var(--text-color-white);
   opacity: 1;
   cursor: pointer;
 }
@@ -58,10 +66,10 @@ a:hover {
 /* header styles */
 #svg {
   display: inline;
-  fill: #fff;
+  color: var(--text-color-white);
 }
 header {
-  background: #35a7ff;
+  background: var(--main-bg-color);
   opacity: 0.9;
   display: flex;
   align-items: center;
@@ -111,7 +119,7 @@ header {
 .createRoom,
 .log {
   width: 100%;
-  background: #35a7ff;
+  background: var(--main-bg-color);
   opacity: 0.9;
   margin: 0 auto;
   padding: 2.4rem 0;
@@ -148,7 +156,7 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--text-color-white);
 }
 #rooms {
   margin: 1rem 0;
