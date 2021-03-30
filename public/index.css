@@ -17,6 +17,8 @@
   --text-color-dark: #333;
   --delete-bg-color: #ff5964;
   --border-radius: 5px;
+  --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --box-shadow: 0px 1px 2px 0px var(--box-shadow-color);
 }
 
 /* globals */
@@ -63,6 +65,7 @@ li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--box-shadow);
 }
 
 li:hover,
@@ -89,6 +92,7 @@ header {
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
   font-size: 2.4rem;
+  box-shadow: var(--box-shadow);
 }
 
 /* /room styles */
@@ -98,7 +102,7 @@ header {
 }
 .dateContainer {
   width: 100%;
-  padding: 1.5rem;
+  padding: 0.5rem;
 }
 .dateString {
   display: inline-block;
@@ -148,6 +152,7 @@ header {
   margin: 0 auto;
   padding: 2.4rem 0;
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 .createRoom {
   margin: 1rem auto;
@@ -164,15 +169,16 @@ header {
   padding: 0.5rem;
 }
 #submitBtn {
-  width: 100px;
   margin: 1rem;
-  padding: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
   border: none;
   background: var(--blue-bg-color);
-  color: var(--dark-bg-color);
-  font-weight: bold;
-  border-radius: var(--border-radius);
+  color: var(--light-bg-color);
+  font-weight: 300;
+  border-radius: 100px;
   cursor: pointer;
+  box-shadow: var(--box-shadow);
 }
 /* selector */
 .log {
