@@ -4,7 +4,7 @@ console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV == "development") {
   apiUrl = "http://localhost:3002/";
 } else {
-  apiUrl = "https://purgo.rickperez.dev/";
+  apiUrl = "https://purgo.rickperez.dev:443/";
 }
 
 //fetch CRUD Functions
