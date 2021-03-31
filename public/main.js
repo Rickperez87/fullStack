@@ -1,1 +1,197 @@
-!function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:a})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var a=Object.create(null);if(n.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(a,r,function(t){return e[t]}.bind(null,r));return a},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";let a;n.r(t),console.log("production"),a="https://purgo.rickperez.dev/";const r=function(){return fetch(a+"api/data").then(e=>e.json()).then(e=>e)},o=function(e){return fetch(a+"api/data/"+e,{method:"PUT",mode:"cors",body:JSON.stringify({date:Date.now()}),headers:{"Content-type":"application/json; charset=UTF-8"}}).then(e=>e.json()).then(e=>{console.log("successful update:",e)}).catch(e=>e)},l=e=>{let t,n,a,r;return r=new Date(e),n=r.getHours(),t=n>12?"PM":"AM",a=n>12?n-12:n,""+r.toDateString()},i=(e,t)=>e.filter(e=>e.room===t)[0].lastCleanedDate.map(e=>l(e));const s=document.getElementById("getList"),c=document.querySelector("select");let d;const u=async()=>{d=await r(),s.innerHTML=d.map(e=>{let t=l(e.lastCleanedDate[e.lastCleanedDate.length-1]);return`<li class='liTag' id='${e._id}'><div class='deleteBtn'><svg class="delete__icon"><use xlink:href="./img/sprite.svg#icon-bin2"></svg></div> <div class='dateContainer'>     <span class='dateString'> ${t}</span></div><span class='roomString'>${e.room}</span> </li>`}).join(""),c.innerHTML=`<option value="">Select a Room</option>${function(e){return e.map(e=>`<option value='${e.room}'>${e.room}</option>`).join("")}(d)}</optgroup>`},m=document.getElementById("getInputField"),g=document.getElementById("submitBtn"),p=document.getElementById("getList"),f=(document.getElementsByClassName("li"),document.getElementById("logs")),y=(document.getElementsByClassName("dateContainer"),document.getElementById("average")),h=document.getElementById("rooms");window.onload=async function(){await u()},g.addEventListener("click",async e=>{let t=m.value,n=Array.from(document.getElementsByClassName("roomString"));if(n.some(e=>e.innerHTML.trim()===t)){let e=n.filter(e=>e.innerHTML.trim()===t)[0].parentElement.id;if(e)return await o(e),await u(),void(m.value="")}await function(e){return fetch(a+"api/data",{method:"POST",mode:"cors",body:JSON.stringify({room:e,date:Date.now()}),headers:{"Content-type":"application/json; charset=UTF-8"}}).then(e=>e.json()).then(e=>{console.log("success:",e)}).catch(e=>console.error("error:",e))}(t),await u(),m.value=""}),m.addEventListener("keyup",e=>{13===e.keyCode&&(e.preventDefault(),g.click())}),p.addEventListener("click",async e=>{let t;if("deleteBtn"!==e.target.className&&"deleteBtn"!==e.target.parentElement.parentElement.className&&"deleteBtn"!==e.target.parentElement.className){"dateContainer"===e.target.className||"roomString"===e.target.className?(t=e.target.parentElement.id,console.log("else if ||","id:"+t,"e.target"+e.target)):"liTag"===e.target.className?(t=e.target.id,console.log("else if","id:"+t,"e.target"+e.target)):(t=e.target.parentElement.parentElement.id,console.log("else",t,e.target.className),console.log("parent class",e.target.parentElement.className));try{await o(t)}catch(e){return e}await u()}else{t=e.target.parentElement.parentElement.parentElement.id;try{await function(e){return fetch(a+"api/data/"+e,{method:"delete",mode:"cors",headers:{"Content-type":"application/json; charset=UTF-8"}}).then(e=>e.json()).then(e=>{console.log("success:",e)}).catch(e=>console.error("error:",e))}(t)}catch(e){return e}await u()}}),h.addEventListener("change",async e=>{let t=await r();f.innerHTML=function(e,t){return i(e,t).map(e=>`<li class='liCleaned' >${l(e)}</li>`).join("")}(t,e.target.value),y.innerHTML="Weekly Average: "+((e,t)=>{let n=i(e,t),a=new Date,r=n[n.length-1],o=Math.ceil((a.getDate()-new Date(r).getDate())/7);return o=0===o?1:o,Math.ceil(n.length/o)})(t,e.target.value)})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/app/utils/crud.js":
+/*!*******************************!*\
+  !*** ./src/app/utils/crud.js ***!
+  \*******************************/
+/*! exports provided: getData, postData, putData, deleteData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getData\", function() { return getData; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"postData\", function() { return postData; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"putData\", function() { return putData; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteData\", function() { return deleteData; });\nlet apiUrl;\n\nconsole.log(\"development\");\nif (true) {\n  apiUrl = \"http://localhost:3002/\";\n} else {}\n\n//fetch CRUD Functions\n\nconst getData = function () {\n  return fetch(apiUrl + \"api/data\")\n    .then((res) => res.json())\n    .then((data) => data);\n};\n\nconst postData = function (input) {\n  return fetch(apiUrl + \"api/data\", {\n    method: \"POST\",\n    mode: \"cors\",\n    body: JSON.stringify({ room: input, date: Date.now() }),\n    headers: {\n      \"Content-type\": \"application/json; charset=UTF-8\",\n    },\n  })\n    .then((resp) => resp.json())\n    .then((data) => {\n      console.log(\"success:\", data);\n    })\n    .catch((error) => console.error(\"error:\", error));\n};\n\nconst putData = function (id) {\n  return fetch(apiUrl + `api/data/${id}`, {\n    method: \"PUT\",\n    mode: \"cors\",\n    body: JSON.stringify({ date: Date.now() }),\n    headers: {\n      \"Content-type\": \"application/json; charset=UTF-8\",\n    },\n  })\n    .then((resp) => resp.json())\n    .then((data) => {\n      console.log(\"successful update:\", data);\n    })\n    .catch((e) => e);\n};\n\nconst deleteData = function (id) {\n  return fetch(apiUrl + `api/data/${id}`, {\n    method: \"delete\",\n    mode: \"cors\",\n    headers: {\n      \"Content-type\": \"application/json; charset=UTF-8\",\n    },\n  })\n    .then((resp) => resp.json())\n    .then((data) => {\n      console.log(\"success:\", data);\n    })\n    .catch((error) => console.error(\"error:\", error));\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/crud.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/formatDateString.js":
+/*!*******************************************!*\
+  !*** ./src/app/utils/formatDateString.js ***!
+  \*******************************************/
+/*! exports provided: formatDateString */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"formatDateString\", function() { return formatDateString; });\nconst formatDateString = (unformatedDate) => {\n  let AMPM, getHours, hour, d, formattedDate;\n  d = new Date(unformatedDate);\n  getHours = d.getHours();\n  AMPM = getHours > 12 ? \"PM\" : \"AM\";\n  hour = getHours > 12 ? getHours - 12 : getHours;\n\n  return (formattedDate = `${d.toDateString()}`);\n\n  //remove hour and minute to date format\n  // ${addZeroPadForTime(hour)}:${addZeroPadForTime(d.getMinutes())} ${AMPM}`);\n};\n\nconst addZeroPadForTime = (num) => {\n  return num < 10 ? `0${num}` : `${num}`;\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/formatDateString.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/getLastCleanedArray.js":
+/*!**********************************************!*\
+  !*** ./src/app/utils/getLastCleanedArray.js ***!
+  \**********************************************/
+/*! exports provided: getLastCleanedArray */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getLastCleanedArray\", function() { return getLastCleanedArray; });\n/* harmony import */ var _formatDateString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formatDateString */ \"./src/app/utils/formatDateString.js\");\n\n\nconst getLastCleanedArray = (data, room) => {\n  const filtered = data.filter((e) => e.room === room);\n  return filtered[0].lastCleanedDate.map((e) => Object(_formatDateString__WEBPACK_IMPORTED_MODULE_0__[\"formatDateString\"])(e));\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/getLastCleanedArray.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/handlechange.js":
+/*!***************************************!*\
+  !*** ./src/app/utils/handlechange.js ***!
+  \***************************************/
+/*! exports provided: handleChange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"handleChange\", function() { return handleChange; });\n/* harmony import */ var _crud__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./crud */ \"./src/app/utils/crud.js\");\n/* harmony import */ var _renderData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderData */ \"./src/app/utils/renderData.js\");\n/* harmony import */ var _setRoomOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setRoomOptions */ \"./src/app/utils/setRoomOptions.js\");\n\n\n\n\nconst list = document.getElementById(\"getList\"),\n  select = document.querySelector(\"select\");\nlet data;\n\nconst handleChange = async () => {\n  data = await Object(_crud__WEBPACK_IMPORTED_MODULE_0__[\"getData\"])();\n  list.innerHTML = Object(_renderData__WEBPACK_IMPORTED_MODULE_1__[\"renderData\"])(data);\n  select.innerHTML = `<option value=\"\">Select a Room</option>${Object(_setRoomOptions__WEBPACK_IMPORTED_MODULE_2__[\"setRoomOptions\"])(\n    data\n  )}</optgroup>`;\n  return;\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/handlechange.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/renderData.js":
+/*!*************************************!*\
+  !*** ./src/app/utils/renderData.js ***!
+  \*************************************/
+/*! exports provided: renderData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"renderData\", function() { return renderData; });\n/* harmony import */ var _formatDateString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formatDateString */ \"./src/app/utils/formatDateString.js\");\n\n\nfunction renderData(data) {\n  return data\n    .map((e) => {\n      let formattedDate = Object(_formatDateString__WEBPACK_IMPORTED_MODULE_0__[\"formatDateString\"])(\n        e.lastCleanedDate[e.lastCleanedDate.length - 1]\n      );\n      return `<li class='liTag' id='${e._id}'><div class='deleteBtn'><svg class=\"delete__icon\"><use xlink:href=\"./img/sprite.svg#icon-bin2\"></svg></div> <div class='dateContainer'>     <span class='dateString'> ${formattedDate}</span></div><span class='roomString'>${e.room}</span> </li>`;\n    })\n    .join(\"\");\n}\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/renderData.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/setAverage.js":
+/*!*************************************!*\
+  !*** ./src/app/utils/setAverage.js ***!
+  \*************************************/
+/*! exports provided: setAverage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setAverage\", function() { return setAverage; });\n/* harmony import */ var _getLastCleanedArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getLastCleanedArray */ \"./src/app/utils/getLastCleanedArray.js\");\n\n\nconst setAverage = (data, room) => {\n  let arr = Object(_getLastCleanedArray__WEBPACK_IMPORTED_MODULE_0__[\"getLastCleanedArray\"])(data, room);\n  let d = new Date();\n  let firstEntry = arr[arr.length - 1];\n  let weeks = Math.ceil((d.getDate() - new Date(firstEntry).getDate()) / 7);\n  weeks = weeks === 0 ? 1 : weeks;\n  let average = Math.ceil(arr.length / weeks);\n  return average;\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/setAverage.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/setLogs.js":
+/*!**********************************!*\
+  !*** ./src/app/utils/setLogs.js ***!
+  \**********************************/
+/*! exports provided: setLogs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setLogs\", function() { return setLogs; });\n/* harmony import */ var _formatDateString__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formatDateString */ \"./src/app/utils/formatDateString.js\");\n/* harmony import */ var _getLastCleanedArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getLastCleanedArray */ \"./src/app/utils/getLastCleanedArray.js\");\n\n\n\nfunction setLogs(data, room) {\n  return Object(_getLastCleanedArray__WEBPACK_IMPORTED_MODULE_1__[\"getLastCleanedArray\"])(data, room)\n    .map((e) => `<li class='liCleaned' >${Object(_formatDateString__WEBPACK_IMPORTED_MODULE_0__[\"formatDateString\"])(e)}</li>`)\n    .join(\"\");\n}\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/setLogs.js?");
+
+/***/ }),
+
+/***/ "./src/app/utils/setRoomOptions.js":
+/*!*****************************************!*\
+  !*** ./src/app/utils/setRoomOptions.js ***!
+  \*****************************************/
+/*! exports provided: setRoomOptions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setRoomOptions\", function() { return setRoomOptions; });\nconst setRoomOptions = function (data) {\n  return data\n    .map((e) => `<option value='${e.room}'>${e.room}</option>`)\n    .join(\"\");\n};\n\n\n\n\n//# sourceURL=webpack:///./src/app/utils/setRoomOptions.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _app_utils_crud__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/utils/crud */ \"./src/app/utils/crud.js\");\n/* harmony import */ var _app_utils_setLogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/utils/setLogs */ \"./src/app/utils/setLogs.js\");\n/* harmony import */ var _app_utils_setAverage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/utils/setAverage */ \"./src/app/utils/setAverage.js\");\n/* harmony import */ var _app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/utils/handlechange */ \"./src/app/utils/handlechange.js\");\n\n\n\n\n\nconst setPost = document.getElementById(\"getInputField\"),\n  submitBtn = document.getElementById(\"submitBtn\"),\n  list = document.getElementById(\"getList\"),\n  liTags = document.getElementsByClassName(\"li\"),\n  ulLogs = document.getElementById(\"logs\"),\n  dateContainer = document.getElementsByClassName(\"dateContainer\"),\n  average = document.getElementById(\"average\"),\n  selector = document.getElementById(\"rooms\");\n\nlet rooms, dateCleanedArray;\nlet dataArray = [];\n\nwindow.onload = async function () {\n  await Object(_app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__[\"handleChange\"])();\n};\n\n//Event Listeners\n\nsubmitBtn.addEventListener(\"click\", async (e) => {\n  let input = setPost.value;\n  let data = Array.from(document.getElementsByClassName(\"roomString\"));\n  if (data.some((e) => e.innerHTML.trim() === input)) {\n    let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);\n    let id = toBeUpdated[0].parentElement.id;\n    if (id) {\n      await Object(_app_utils_crud__WEBPACK_IMPORTED_MODULE_0__[\"putData\"])(id);\n      await Object(_app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__[\"handleChange\"])();\n      setPost.value = \"\";\n      return;\n    }\n  }\n  await Object(_app_utils_crud__WEBPACK_IMPORTED_MODULE_0__[\"postData\"])(input);\n  await Object(_app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__[\"handleChange\"])();\n  setPost.value = \"\";\n});\n\nsetPost.addEventListener(\"keyup\", (e) => {\n  if (e.keyCode === 13) {\n    e.preventDefault();\n    submitBtn.click();\n  }\n});\n\nlist.addEventListener(\"click\", async (e) => {\n  let id;\n  if (\n    e.target.className === \"deleteBtn\" ||\n    e.target.parentElement.parentElement.className === \"deleteBtn\" ||\n    e.target.parentElement.className === \"deleteBtn\"\n  ) {\n    id = e.target.parentElement.parentElement.parentElement.id;\n    try {\n      await Object(_app_utils_crud__WEBPACK_IMPORTED_MODULE_0__[\"deleteData\"])(id);\n    } catch (e) {\n      return e;\n    }\n    await Object(_app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__[\"handleChange\"])();\n    return;\n  } else if (\n    e.target.className === \"dateContainer\" ||\n    e.target.className === \"roomString\"\n  ) {\n    id = e.target.parentElement.id;\n    console.log(\"else if ||\", `id:${id}`, `e.target${e.target}`);\n  } else if (e.target.className === \"liTag\") {\n    id = e.target.id;\n    console.log(\"else if\", `id:${id}`, `e.target${e.target}`);\n  } else {\n    id = e.target.parentElement.parentElement.id;\n    console.log(\"else\", id, e.target.className);\n    console.log(\"parent class\", e.target.parentElement.className);\n  }\n  try {\n    await Object(_app_utils_crud__WEBPACK_IMPORTED_MODULE_0__[\"putData\"])(id);\n  } catch (e) {\n    return e;\n  }\n  await Object(_app_utils_handlechange__WEBPACK_IMPORTED_MODULE_3__[\"handleChange\"])();\n  return;\n});\n\nselector.addEventListener(\"change\", async (e) => {\n  let data = await Object(_app_utils_crud__WEBPACK_IMPORTED_MODULE_0__[\"getData\"])();\n  ulLogs.innerHTML = Object(_app_utils_setLogs__WEBPACK_IMPORTED_MODULE_1__[\"setLogs\"])(data, e.target.value);\n  average.innerHTML = `Weekly Average: ${Object(_app_utils_setAverage__WEBPACK_IMPORTED_MODULE_2__[\"setAverage\"])(data, e.target.value)}`;\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ })
+
+/******/ });
