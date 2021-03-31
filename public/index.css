@@ -314,4 +314,12 @@ label {
     height: 3.6rem;
     right: 3%;
   }
+  .dateString {
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+  .roomString {
+    font-size: 1.8rem;
+    padding: 0.5rem 0 1rem;
+  }
 }
