@@ -66,14 +66,10 @@ list.addEventListener("click", async (e) => {
     e.target.className === "roomString"
   ) {
     id = e.target.parentElement.id;
-    console.log("else if ||", `id:${id}`, `e.target${e.target}`);
   } else if (e.target.className === "liTag") {
     id = e.target.id;
-    console.log("else if", `id:${id}`, `e.target${e.target}`);
   } else {
     id = e.target.parentElement.parentElement.id;
-    console.log("else", id, e.target.className);
-    console.log("parent class", e.target.parentElement.className);
   }
   try {
     await putData(id);

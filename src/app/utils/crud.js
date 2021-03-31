@@ -1,6 +1,5 @@
 let apiUrl;
 
-console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV == "development") {
   apiUrl = "http://localhost:3002/";
 } else {
@@ -8,7 +7,6 @@ if (process.env.NODE_ENV == "development") {
 }
 
 //fetch CRUD Functions
-
 const getData = function () {
   return fetch(apiUrl + "api/data")
     .then((res) => res.json())
@@ -25,9 +23,7 @@ const postData = function (input) {
     },
   })
     .then((resp) => resp.json())
-    .then((data) => {
-      console.log("success:", data);
-    })
+    .then((data) => {})
     .catch((error) => console.error("error:", error));
 };
 
@@ -41,9 +37,7 @@ const putData = function (id) {
     },
   })
     .then((resp) => resp.json())
-    .then((data) => {
-      console.log("successful update:", data);
-    })
+    .then((data) => {})
     .catch((e) => e);
 };
 
@@ -56,9 +50,7 @@ const deleteData = function (id) {
     },
   })
     .then((resp) => resp.json())
-    .then((data) => {
-      console.log("success:", data);
-    })
+    .then((data) => {})
     .catch((error) => console.error("error:", error));
 };
 
