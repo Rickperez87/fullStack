@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-/* reset */
+/* reset ////////////////////////////////////////*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* variables */
+/* variables ////////////////////////////////////////*/
 :root {
   --main-bg-color: #fff;
   --blue-bg-color: #35a7ff;
@@ -21,7 +21,7 @@
   --box-shadow: 0px 1px 2px 0px var(--box-shadow-color);
 }
 
-/* globals */
+/* globals ////////////////////////////////////////*/
 html {
   font-size: 10px;
 }
@@ -76,8 +76,21 @@ a:hover,
   cursor: pointer;
   color: var(--blue-bg-color);
 }
-
-/* header styles */
+/* layout ////////////////////////////////////////*/
+.container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+.content-box {
+  width: 100%;
+  min-height: 80vh;
+  margin: 3rem 0;
+  background: var(--light-bg-color);
+  border-radius: var(--border-radius);
+  padding: 3rem;
+}
+/* header styles ////////////////////////////////////////*/
 svg {
   display: inline-block;
   fill: var(--text-color-dark);
@@ -97,7 +110,7 @@ header {
   box-shadow: var(--box-shadow);
 }
 
-/* /room styles */
+/* /room styles ////////////////////////////////////////*/
 .roomString {
   padding: 1rem;
   text-align: center;
@@ -112,19 +125,6 @@ header {
   font-size: 2.4rem;
   font-weight: 500;
   text-align: center;
-}
-.container {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-}
-.content-box {
-  width: 100%;
-  min-height: 80vh;
-  margin: 3rem 0;
-  background: var(--light-bg-color);
-  border-radius: var(--border-radius);
-  padding: 3rem;
 }
 .deleteBtn {
   position: absolute;
@@ -148,7 +148,7 @@ header {
   fill: var(--white);
 }
 
-/* create a room */
+/* create a room ////////////////////////////////////////*/
 .createRoom,
 .log {
   width: 100%;
@@ -190,7 +190,7 @@ header {
   cursor: pointer;
   box-shadow: var(--box-shadow);
 }
-/* selector */
+/* selector ////////////////////////////////////////*/
 .log {
   display: flex;
   flex-direction: column;
@@ -215,14 +215,10 @@ label {
   max-width: 600px;
 }
 
-/* media queries */
+/* media queries ////////////////////////////////////////*/
 @media only screen and (max-width: 1260px) {
   ul {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .container {
-    margin: 0 2rem;
-    overflow-x: hidden;
   }
 }
 @media only screen and (max-width: 870px) {
