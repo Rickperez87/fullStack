@@ -15,7 +15,6 @@ window.onload = async function () {
 };
 
 const encodeHTML = (string) => {
-  console.log("encoding..");
   return string
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -24,13 +23,14 @@ const encodeHTML = (string) => {
 //Event Listeners
 
 submitBtn.addEventListener("click", async (e) => {
-  let inputValue = encodeHTML(inputField.value);
-  console.log("input", inputValue);
+  let inputValue = encodeHTML(inputField.value).toLowerCase();
   let arrMainText = Array.from(document.getElementsByClassName("roomString"));
   //check if input already created update
-  if (arrMainText.some((el) => el.innerHTML.trim() === inputValue)) {
+  if (
+    arrMainText.some((el) => el.innerHTML.trim().toLowerCase() === inputValue)
+  ) {
     let toBeUpdated = arrMainText.find(
-      (el) => el.innerHTML.trim() === inputValue
+      (el) => el.innerHTML.trim().toLowerCase() === inputValue
     );
     let id = toBeUpdated.parentElement.id;
     if (id) {
