@@ -14,14 +14,24 @@ window.onload = async function () {
   await handleChange();
 };
 
+const encodeHTML = (string) => {
+  console.log("encoding..");
+  return string
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/"/g, "&quot;");
+};
 //Event Listeners
 
 submitBtn.addEventListener("click", async (e) => {
-  let inputValue = inputField.value;
+  let inputValue = encodeHTML(inputField.value);
+  console.log("input", inputValue);
   let arrMainText = Array.from(document.getElementsByClassName("roomString"));
   //check if input already created update
-  if (arrMainText.some((el) => el.innerHTML.trim() === input)) {
-    let toBeUpdated = arrMainText.find((el) => el.innerHTML.trim() === input);
+  if (arrMainText.some((el) => el.innerHTML.trim() === inputValue)) {
+    let toBeUpdated = arrMainText.find(
+      (el) => el.innerHTML.trim() === inputValue
+    );
     let id = toBeUpdated.parentElement.id;
     if (id) {
       await putData(id);

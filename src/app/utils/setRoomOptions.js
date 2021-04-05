@@ -1,6 +1,6 @@
 const setRoomOptions = function (data) {
   return data
-    .map((e) => `<option value='${e.room}'>${e.room}</option>`)
+    .map((el) => `<option value='${el.room}'>${el.room}</option>`)
     .join("");
 };
 
