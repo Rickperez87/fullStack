@@ -3,7 +3,7 @@ import { setLogs } from "./app/utils/setLogs";
 import { setAverage } from "./app/utils/setAverage";
 import { handleChange } from "./app/utils/handlechange";
 
-const setPost = document.getElementById("getInputField"),
+const inputField = document.getElementById("getInputField"),
   submitBtn = document.getElementById("submitBtn"),
   list = document.getElementById("getList"),
   liTags = document.getElementsByClassName("li"),
@@ -22,7 +22,7 @@ window.onload = async function () {
 //Event Listeners
 
 submitBtn.addEventListener("click", async (e) => {
-  let input = setPost.value;
+  let input = inputField.value;
   let data = Array.from(document.getElementsByClassName("roomString"));
   if (data.some((e) => e.innerHTML.trim() === input)) {
     let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);
@@ -30,21 +30,21 @@ submitBtn.addEventListener("click", async (e) => {
     if (id) {
       await putData(id);
       await handleChange();
-      setPost.value = "";
+      inputField.value = "";
       return;
     }
   }
   await postData(input);
   await handleChange();
-  setPost.value = "";
+  inputField.value = "";
 });
 
-setPost.addEventListener("keyup", (e) => {
+const didPressEnter=(e)=>{
   if (e.keyCode === 13) {
     e.preventDefault();
     submitBtn.click();
-  }
-});
+}
+ inputField.addEventListener("keyup", didPressEnter);
 
 list.addEventListener("click", async (e) => {
   let id;
