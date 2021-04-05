@@ -36,6 +36,7 @@ submitBtn.addEventListener("click", async (e) => {
   inputField.value = "";
 });
 
+//submit on enter key press
 const didPressEnter = (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
@@ -44,6 +45,7 @@ const didPressEnter = (e) => {
 };
 inputField.addEventListener("keyup", didPressEnter);
 
+//handle clicking card elements: detlete or update time stamp
 list.addEventListener("click", async (e) => {
   let id;
   if (
@@ -78,6 +80,7 @@ list.addEventListener("click", async (e) => {
   return;
 });
 
+//pulldown UI
 selector.addEventListener("change", async (e) => {
   let data = await getData();
   ulLogs.innerHTML = setLogs(data, e.target.value);
