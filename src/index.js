@@ -6,14 +6,9 @@ import { handleChange } from "./app/utils/handlechange";
 const inputField = document.getElementById("getInputField"),
   submitBtn = document.getElementById("submitBtn"),
   list = document.getElementById("getList"),
-  liTags = document.getElementsByClassName("li"),
   ulLogs = document.getElementById("logs"),
-  dateContainer = document.getElementsByClassName("dateContainer"),
   average = document.getElementById("average"),
   selector = document.getElementById("rooms");
-
-let rooms, dateCleanedArray;
-let dataArray = [];
 
 window.onload = async function () {
   await handleChange();
