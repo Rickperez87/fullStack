@@ -22,11 +22,12 @@ window.onload = async function () {
 //Event Listeners
 
 submitBtn.addEventListener("click", async (e) => {
-  let input = inputField.value;
-  let data = Array.from(document.getElementsByClassName("roomString"));
-  if (data.some((e) => e.innerHTML.trim() === input)) {
-    let toBeUpdated = data.filter((e) => e.innerHTML.trim() === input);
-    let id = toBeUpdated[0].parentElement.id;
+  let inputValue = inputField.value;
+  let arrMainText = Array.from(document.getElementsByClassName("roomString"));
+  //check if input already created update
+  if (arrMainText.some((el) => el.innerHTML.trim() === input)) {
+    let toBeUpdated = arrMainText.find((el) => el.innerHTML.trim() === input);
+    let id = toBeUpdated.parentElement.id;
     if (id) {
       await putData(id);
       await handleChange();
@@ -34,17 +35,19 @@ submitBtn.addEventListener("click", async (e) => {
       return;
     }
   }
-  await postData(input);
+  //else if new input post the new value
+  await postData(inputValue);
   await handleChange();
   inputField.value = "";
 });
 
-const didPressEnter=(e)=>{
+const didPressEnter = (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
     submitBtn.click();
-}
- inputField.addEventListener("keyup", didPressEnter);
+  }
+};
+inputField.addEventListener("keyup", didPressEnter);
 
 list.addEventListener("click", async (e) => {
   let id;
