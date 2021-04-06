@@ -10,6 +10,7 @@
     "start": "node app.js",
     "dev": "export URL=dev&& nodemon app.js",
     "build": "webpack --watch",
+    "prod": "INLINE_RUNTIME_CHUNK=false npm run build",
     "test": "NODE_ENV=test jest --watchAll --verbose --runInBand"
   },
   "engines": {
