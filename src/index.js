@@ -24,7 +24,8 @@ const encodeHTML = (string) => {
 
 submitBtn.addEventListener("click", async (e) => {
   let inputValue = encodeHTML(inputField.value).toLowerCase();
-  let arrMainText = Array.from(document.getElementsByClassName("roomString"));
+  let arrMainText = [...document.querySelectorAll(".roomString")];
+  console.log(arrMainText);
   //check if input already created update
   if (
     arrMainText.some((el) => el.innerHTML.trim().toLowerCase() === inputValue)
@@ -58,12 +59,20 @@ inputField.addEventListener("keyup", didPressEnter);
 //handle clicking card elements: detlete or update time stamp
 list.addEventListener("click", async (e) => {
   let id;
-  if (
-    e.target.className === "deleteBtn" ||
-    e.target.parentElement.parentElement.className === "deleteBtn" ||
-    e.target.parentElement.className === "deleteBtn"
-  ) {
-    id = e.target.parentElement.parentElement.parentElement.id;
+  let clicked = e.target;
+  if (!clicked.closest(".liTag")) {
+    return;
+  } else if (!clicked.closest(".deleteBtn")) {
+    id = clicked.closest(".liTag").id;
+    try {
+      await putData(id);
+    } catch (e) {
+      return e;
+    }
+    await handleChange();
+    return;
+  } else {
+    id = clicked.closest(".liTag").id;
     try {
       await deleteData(id);
     } catch (e) {
@@ -71,23 +80,7 @@ list.addEventListener("click", async (e) => {
     }
     await handleChange();
     return;
-  } else if (
-    e.target.className === "dateContainer" ||
-    e.target.className === "roomString"
-  ) {
-    id = e.target.parentElement.id;
-  } else if (e.target.className === "liTag") {
-    id = e.target.id;
-  } else {
-    id = e.target.parentElement.parentElement.id;
   }
-  try {
-    await putData(id);
-  } catch (e) {
-    return e;
-  }
-  await handleChange();
-  return;
 });
 
 //pulldown UI
