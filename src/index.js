@@ -82,7 +82,13 @@ list.addEventListener("click", async (e) => {
 console.log(average);
 //pulldown UI
 selector.addEventListener("change", async (e) => {
-  let data = await getData();
-  ulLogs.innerHTML = setLogs(data, e.target.value);
-  average.innerHTML = `Weekly Average: ${setAverage(data, e.target.value)}`;
+  if (!e.target.value) {
+    average.textContent = "";
+    ulLogs.innerHTML = "";
+    return;
+  } else {
+    let data = await getData();
+    ulLogs.innerHTML = setLogs(data, e.target.value);
+    average.textContent = `Weekly Average: ${setAverage(data, e.target.value)}`;
+  }
 });
