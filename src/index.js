@@ -21,40 +21,37 @@ const encodeHTML = (string) => {
     .replace(/"/g, "&quot;");
 };
 //Event Listeners
-
 submitBtn.addEventListener("click", async (e) => {
   let inputValue = encodeHTML(inputField.value).toLowerCase();
   let arrMainText = [...document.querySelectorAll(".roomString")];
-  console.log(arrMainText);
-  //check if input already created update
-  if (
-    arrMainText.some((el) => el.innerHTML.trim().toLowerCase() === inputValue)
-  ) {
-    let toBeUpdated = arrMainText.find(
-      (el) => el.innerHTML.trim().toLowerCase() === inputValue
-    );
-    let id = toBeUpdated.parentElement.id;
-    if (id) {
-      await putData(id);
-      await handleChange();
-      inputField.value = "";
-      return;
-    }
+  //check if input already created
+  let textExists = arrMainText.find(
+    (el) => el.textContent.trim().toLowerCase() === inputValue
+  );
+  //if text unique post data
+  if (!textExists) {
+    console.log("text doesnt exist");
+    await postData(inputValue);
+    await handleChange();
+    inputField.value = "";
   }
-  //else if new input post the new value
-  await postData(inputValue);
-  await handleChange();
-  inputField.value = "";
+  //text already exists get id and update DB
+  else {
+    console.log("text Exists");
+    let id = textExists.closest(".liTag").id;
+    await putData(id);
+    await handleChange();
+    inputField.value = "";
+  }
 });
 
-//submit on enter key press
-const didPressEnter = (e) => {
+const submitOnEnter = (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
     submitBtn.click();
   }
 };
-inputField.addEventListener("keyup", didPressEnter);
+inputField.addEventListener("keyup", submitOnEnter);
 
 //handle clicking card elements: detlete or update time stamp
 list.addEventListener("click", async (e) => {
@@ -82,7 +79,7 @@ list.addEventListener("click", async (e) => {
     return;
   }
 });
-
+console.log(average);
 //pulldown UI
 selector.addEventListener("change", async (e) => {
   let data = await getData();
